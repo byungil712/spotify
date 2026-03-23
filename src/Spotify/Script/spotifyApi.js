@@ -11,31 +11,29 @@ export const spotifyApi = createApi({
       },
    }),
    endpoints: (builder) => ({
-      getMyProfile: builder.query({ query: () => "/me" }),
-      getFeaturedPlaylists: builder.query({
-         query: () => "/browse/featured-playlists",
+      // 인기 상승 곡
+      getUpAlbums: builder.query({
+         query: (id) => `/albums/${id}?market=KR`,
       }),
-      searchTracks: builder.query({
-         query: (q) => `/search?q=${q}&type=track`,
+      // 인기 아티스트 (k-pop)
+      getArtistsName: builder.query({
+         query: (name) =>
+            `/search?q=${encodeURIComponent(name)}&type=artist&market=KR&limit=1`,
       }),
-      getPlaylist: builder.query({ query: (id) => `/playlists/${id}` }),
-      getNewReleases: builder.query({
-         query: () => "/browse/new-releases?limit=20",
+      // 인기 앨범 (k-pop)
+      getTopAlbums: builder.query({
+         query: (id) => `/albums/${id}?market=KR`,
       }),
-      getUserTopTracks: builder.query({
-         query: () => "/me/top/tracks?limit=20",
-      }),
-      searchTracks: builder.query({
-         query: (keyword) => `/search?q=${keyword}&type=track&limit=20`,
+      // 인기 라디오
+      getNewAlbum: builder.query({
+         query: (id) => `/albums/${id}?market=KR`,
       }),
    }),
 });
 
 export const {
-   useGetMyProfileQuery,
-   useGetFeaturedPlaylistsQuery,
-   useSearchTracksQuery,
-   useGetPlaylistQuery,
-   useGetNewReleasesQuery,
-   useGetUserTopTracksQuery,
+   useGetUpAlbumsQuery,
+   useGetArtistsNameQuery,
+   useGetTopAlbumsQuery,
+   useGetNewAlbumQuery,
 } = spotifyApi;

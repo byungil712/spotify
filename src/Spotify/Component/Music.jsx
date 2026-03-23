@@ -1,120 +1,252 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useSelector } from "react-redux";
-import { useGetNewReleasesQuery, useSearchTracksQuery } from "../Script/spotifyApi";
+import ArtistCard from "./ArtistCard";
+import AlbumCard from "./AlbumCard";
+import UpAlbum from "./UpAlbum";
+import NewAlbum from "./NewAlbum";
 
-const Music = () => {
-   const [keyword, setKeyword] = useState("");
-   const [searchInput, setSearchInput] = useState("");
+const Music = ({ keyword }) => {
    const accessToken = useSelector((state) => state.music.accessToken);
 
-   // 신규 앨범 불러오기 (기본)
-   const {
-      data: newReleases,
-      isLoading: isNewLoading,
-      isError: isNewError,
-   } = useGetNewReleasesQuery();
+   const newAlbums = [
+      "7euwh8AFMBg5I408jSVLq4",
+      "1G8siqRnMQiyjhm2bFVp0W",
+      "4K5d74xQ43sq3CbPa7sSta",
+      "7KLgaMNymI6GGj7JMH1JFT",
+      "37GXhVdGkKpYUZiD2a4mgg",
+      "0yUer3gTywnNbW9ChFEs1d",
+      "646lxOrZh1bUwlEevSSZRt",
+      "1sR5KzprQKpzjuJc1u586m",
+      "3LTibbNd4cBsR4frUCIPTi",
+      "0UFosP2UjoyB4hjqfHQKpJ",
+      "4tWtDCXcEImecc7ySIVqwW",
+      "3K92gTppnPdQgUsbDk74E2",
+      "2m47uENn2jQv3q5muu3z1S",
+      "4tbCxd3tBDiJYNFHsr52B3",
+      "4h8amYcoOzdgu6fsapRvBD",
+      "6mTzQkij2GLHTsmbgsSxQl",
+      "41rv9rV6jZMwzt3O9CE8jl",
+      "2OlUMnS2qteJ6rY9LnZ0ht",
+      "6w5SENJgvoPHEjDvFvN7R3",
+   ];
 
-   // 검색어로 트랙 불러오기
-   const { data: searchResult, isLoading: isSearchLoading } =
-      useSearchTracksQuery(keyword, {
-         skip: !keyword, // keyword 없으면 API 호출 안 함
+   const upAlbums = [
+      "1LB2wP1HO28roYqxcw4Qtx",
+      "3053E9tumiU5rqbAPWF06s",
+      "67d43ZuedVWtZMc4nOm90J",
+      "1IxQnpYIIFY9F2IVVsD27F",
+      "2DV7iVJ7L5DRQijgjyqLyQ",
+      "4EPIlAjXbTNQTracKmYnI6",
+      "4WUHzPCu7BEuTxnjICJqpy",
+      "4yaB2lDjvBH7jqnmpdcfpW",
+      "4ptpkLWr3MMEe6pUQv0Xs8",
+      "6oECjagksATHu2UaclXrq1",
+   ];
+
+   const artists = [
+      "악뮤",
+      "아이유",
+      "10cm",
+      "G-DRAGON",
+      "DAY6",
+      "aespa",
+      "LE SSERAFIM",
+      "BIGBANG",
+      "BOYNESTDOOR",
+      "NewJeans",
+   ];
+
+   const albums = [
+      "1W7dufIS79lk01w3tBAGe5",
+      "5pSk3c3wVwnb2arb6ohCPU",
+      "2SPrl8C8pgSM5gXbAiyJHY",
+      "15XcLhiVMlSOipUddTNDnr",
+      "2E8hkTJKnSCv69mjVAh6hL",
+      "07cUjKdLcgmnABNKKb4rGQ",
+      "3DmDoHxAeEiDFNWrHSKAdQ",
+      "19z4SOpETLOt3bKKcJJ84O",
+      "6EgR5UlxMx9JksQUqR9Yep",
+      "0aYRlVT4Mt63KpofZcaBoc",
+   ];
+
+   const newAlbumRef = useRef(null);
+   const upAlbumRef = useRef(null);
+   const artistRef = useRef(null);
+   const albumRef = useRef(null);
+
+   const [newAlbumScroll, setNewAlbumScroll] = useState({
+      left: false,
+      right: true,
+   });
+   const [upAlbumScroll, setUpAlbumScroll] = useState({
+      left: false,
+      right: true,
+   });
+   const [artistScroll, setArtistScroll] = useState({
+      left: false,
+      right: true,
+   });
+   const [albumScroll, setAlbumScroll] = useState({ left: false, right: true });
+
+   const handleScroll = (ref, setter) => {
+      const s = ref.current;
+      if (!s) return;
+      setter({
+         left: s.scrollLeft > 0,
+         right: s.scrollLeft + s.clientWidth < s.scrollWidth - 10,
       });
+   };
 
-   const handleSearch = () => setKeyword(searchInput);
-
-   // ✅ 연결 상태 확인
-   console.log("🔑 토큰 확인:", accessToken);
-   console.log("🎵 신규 앨범 데이터:", newReleases);
-   console.log("🔍 검색 결과:", searchResult);
+   const scroll = (ref, dir) => {
+      const s = ref.current;
+      if (!s) return;
+      s.scrollBy({ left: dir === "right" ? 500 : -500, behavior: "smooth" });
+   };
 
    return (
-      <div style={{ padding: "20px", fontFamily: "Arial" }}>
-         {/* API 연결 상태 배지 */}
-         <div style={{ marginBottom: "20px" }}>
-            <span
-               style={{
-                  background: accessToken ? "#1DB954" : "#e74c3c",
-                  color: "white",
-                  padding: "6px 12px",
-                  borderRadius: "20px",
-                  fontSize: "14px",
-               }}
-            >
-               {accessToken ? "✅ API 연결됨" : "❌ 토큰 없음"}
-            </span>
-         </div>
-
-         {/* 검색창 */}
-         <div style={{ marginBottom: "30px" }}>
-            <input
-               value={searchInput}
-               onChange={(e) => setSearchInput(e.target.value)}
-               onKeyDown={(e) => e.key === "Enter" && handleSearch()}
-               placeholder="아티스트 / 곡명 검색..."
-               style={{
-                  padding: "10px",
-                  width: "300px",
-                  marginRight: "8px",
-                  borderRadius: "4px",
-                  border: "1px solid #ccc",
-               }}
-            />
-            <button
-               onClick={handleSearch}
-               style={{
-                  padding: "10px 20px",
-                  background: "#1DB954",
-                  color: "white",
-                  border: "none",
-                  borderRadius: "4px",
-                  cursor: "pointer",
-               }}
-            >
-               검색
-            </button>
-         </div>
-
-         {/* 검색 결과 */}
-         {keyword && (
-            <section>
-               <h2>🔍 "{keyword}" 검색 결과</h2>
-               {isSearchLoading && <p>검색 중...</p>}
-               <TrackList tracks={searchResult?.tracks?.items} />
+      <div className="main_i">
+         {!keyword && (
+            <section className="music_list">
+               <div className="music_list_text">
+                  <h3>최신 앨범</h3>
+                  <p>모두 표시</p>
+               </div>
+               <div className="music_scroll">
+                  {newAlbumScroll.left && (
+                     <button
+                        className="scroll_btn scroll_btn_left"
+                        onClick={() => scroll(newAlbumRef, "left")}
+                     >
+                        ❮
+                     </button>
+                  )}
+                  <div
+                     className="music_box"
+                     ref={newAlbumRef}
+                     onScroll={() =>
+                        handleScroll(newAlbumRef, setNewAlbumScroll)
+                     }
+                  >
+                     {newAlbums.map((id) => (
+                        <NewAlbum key={id} id={id} />
+                     ))}
+                  </div>
+                  {newAlbumScroll.right && (
+                     <button
+                        className="scroll_btn scroll_btn_right"
+                        onClick={() => scroll(newAlbumRef, "right")}
+                     >
+                        ❯
+                     </button>
+                  )}
+               </div>
             </section>
          )}
 
-         {/* 신규 앨범 */}
          {!keyword && (
-            <section>
-               <h2>🆕 신규 앨범</h2>
-               {isNewLoading && <p>불러오는 중...</p>}
-               {isNewError && (
-                  <p style={{ color: "red" }}>
-                     ❌ API 호출 실패 - 토큰을 확인하세요
-                  </p>
-               )}
-               <div
-                  style={{
-                     display: "grid",
-                     gridTemplateColumns: "repeat(4, 1fr)",
-                     gap: "16px",
-                  }}
-               >
-                  {newReleases?.albums?.items.map((album) => (
-                     <div key={album.id} style={{ textAlign: "center" }}>
-                        <img
-                           src={album.images[0]?.url}
-                           alt={album.name}
-                           style={{ width: "100%", borderRadius: "8px" }}
-                        />
-                        <p style={{ fontSize: "13px", marginTop: "8px" }}>
-                           {album.name}
-                        </p>
-                        <p style={{ fontSize: "11px", color: "#888" }}>
-                           {album.artists.map((a) => a.name).join(", ")}
-                        </p>
-                     </div>
-                  ))}
+            <section className="music_list">
+               <div className="music_list_text">
+                  <h3>인기 상승곡</h3>
+                  <p>모두 표시</p>
+               </div>
+               <div className="music_scroll">
+                  {upAlbumScroll.left && (
+                     <button
+                        className="scroll_btn scroll_btn_left"
+                        onClick={() => scroll(upAlbumRef, "left")}
+                     >
+                        ❮
+                     </button>
+                  )}
+                  <div
+                     className="music_box"
+                     ref={upAlbumRef}
+                     onScroll={() => handleScroll(upAlbumRef, setUpAlbumScroll)}
+                  >
+                     {upAlbums.map((id) => (
+                        <UpAlbum key={id} id={id} />
+                     ))}
+                  </div>
+                  {upAlbumScroll.right && (
+                     <button
+                        className="scroll_btn scroll_btn_right"
+                        onClick={() => scroll(upAlbumRef, "right")}
+                     >
+                        ❯
+                     </button>
+                  )}
+               </div>
+            </section>
+         )}
+
+         {!keyword && (
+            <section className="music_list">
+               <div className="music_list_text">
+                  <h3>인기 아티스트</h3>
+                  <p>모두 표시</p>
+               </div>
+               <div className="music_scroll">
+                  {artistScroll.left && (
+                     <button
+                        className="scroll_btn scroll_btn_left"
+                        onClick={() => scroll(artistRef, "left")}
+                     >
+                        ❮
+                     </button>
+                  )}
+                  <div
+                     className="music_box"
+                     ref={artistRef}
+                     onScroll={() => handleScroll(artistRef, setArtistScroll)}
+                  >
+                     {artists.map((name) => (
+                        <ArtistCard key={name} name={name} />
+                     ))}
+                  </div>
+                  {artistScroll.right && (
+                     <button
+                        className="scroll_btn scroll_btn_right"
+                        onClick={() => scroll(artistRef, "right")}
+                     >
+                        ❯
+                     </button>
+                  )}
+               </div>
+            </section>
+         )}
+
+         {!keyword && (
+            <section className="music_list">
+               <div className="music_list_text">
+                  <h3>인기 앨범 및 싱글</h3>
+                  <p>모두 표시</p>
+               </div>
+               <div className="music_scroll">
+                  {albumScroll.left && (
+                     <button
+                        className="scroll_btn scroll_btn_left"
+                        onClick={() => scroll(albumRef, "left")}
+                     >
+                        ❮
+                     </button>
+                  )}
+                  <div
+                     className="music_box"
+                     ref={albumRef}
+                     onScroll={() => handleScroll(albumRef, setAlbumScroll)}
+                  >
+                     {albums.map((id) => (
+                        <AlbumCard key={id} id={id} />
+                     ))}
+                  </div>
+                  {albumScroll.right && (
+                     <button
+                        className="scroll_btn scroll_btn_right"
+                        onClick={() => scroll(albumRef, "right")}
+                     >
+                        ❯
+                     </button>
+                  )}
                </div>
             </section>
          )}

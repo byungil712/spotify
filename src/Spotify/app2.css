@@ -1,0 +1,108 @@
+@media screen and (max-width: 1741px) {
+   .header_i .logo {
+      flex: 0;
+      display: flex;
+      justify-content: flex-start;
+      font-size: 34px;
+      cursor: pointer;
+      color: #fff;
+      position: relative;
+      z-index: 10;
+   }
+
+   .header_i .search_wrap {
+      padding-left: 4px;
+      justify-content: flex-start;
+      margin-right: 0;
+   }
+}
+
+@media screen and (max-width: 1387px) {
+   .music_box .music_item {
+      width: calc(1870px / 10);
+      padding: 8px;
+   }
+}
+
+@media screen and (max-width: 1078px) {
+   .header_i .search_wrap .search_box .search_input_box {
+      max-width: 48px;
+      background-color: transparent;
+   }
+
+   .header_i .search_wrap .search_box .search_input_box .search_input,
+   .header_i .search_wrap .search_box .search_input_box .wall,
+   .header_i .search_wrap .search_box .search_input_box .input_icon {
+      opacity: 0;
+      visibility: hidden;
+   }
+}
+
+@media screen and (max-width: 990px) {
+   footer {
+      width: 100%;
+      padding: 0 16px;
+   }
+
+   .footer_i .footer_top {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 64px 0;
+      padding-bottom: 42px;
+      border-top: 1px solid #2b2b2b;
+      border-bottom: 1px solid #2b2b2b;
+   }
+
+   .footer_i .footer_top .footer_menu .menu_category {
+      width: 40%;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-right: 24px;
+      margin-bottom: 32px;
+   }
+}
+
+@media screen and (max-width: 928px) {
+   .center_wrap {
+      height: calc(100% - 160px);
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      padding: 0 8px;
+      overflow: visible;
+   }
+
+   .advart {
+      height: 107px;
+   }
+
+   .advart_i {
+      padding: 8px 14px;
+   }
+}
+
+@media screen and (max-width: 849px) {
+   .header_i .service .wall {
+      display: none;
+   }
+
+   .header_i .service .premium {
+      display: none;
+   }
+}
+
+@media screen and (max-width: 767px) {
+   .footer_i .footer_top .footer_menu .menu_category {
+      width: 100%;
+   }
+
+   .footer_i .footer_btm{
+      min-width: 464px;
+   }
+
+   .footer_i .footer_btm p{
+      font-size: 13px;
+   }
+}

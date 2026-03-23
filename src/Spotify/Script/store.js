@@ -5,9 +5,9 @@ import { spotifyApi } from "../Script/spotifyApi";
 const store = configureStore({
    reducer: {
       music: musicSlice,
-      [spotifyApi.reducerPath]: spotifyApi.reducer, // ✅ 추가
+      [spotifyApi.reducerPath]: spotifyApi.reducer,
    },
-   middleware: (getDefaultMiddleware) =>             // ✅ 추가
+   middleware: (getDefaultMiddleware) =>          
       getDefaultMiddleware().concat(spotifyApi.middleware),
 });
 
