@@ -171,6 +171,7 @@
    main {
       min-width: 0px;
       border-radius: 0;
+      overflow-x: hidden;
    }
 
    main .custom-scrollbar {
@@ -186,6 +187,50 @@
          background-color 0.3s ease;
       border-top-right-radius: 8px;
       background-color: #b3b3b3;
+   }
+
+   .main_i .music_list .music_list_text {
+      padding-left: 16px;
+   }
+
+   .main_i .music_list .music_list_text h3{
+      font-size: 18px;
+   }
+
+   .main_i .music_list .music_list_text p{
+      display: none;
+   }
+
+   .main_i .music_list .music_scroll .scroll_btn {
+      display: none;
+   }
+
+   .main_i .music_list .music_scroll .music_box {
+      padding-left: 4px;
+   }
+
+   .music_box .music_item {
+      width: calc(1770px / 10);
+      padding: 8px;
+   }
+
+   .music_box .music_item .music_img .music_repro {
+      display: none;
+   }
+
+   .music_box .music_item .music_img img {
+      width: 151px;
+   }
+
+   .music_box .music_item .artist_img img {
+      border-radius: 8px;
+   }
+
+   .music_box .music_item .music_text {
+      width: 151px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
    }
 
    .footer_i .footer_btm {

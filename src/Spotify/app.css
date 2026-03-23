@@ -764,8 +764,11 @@ main .music_btn button {
 
 .music_box .music_item .music_img .music_repro:hover {
    padding: 2px;
-
    background-color: #20e464;
+}
+
+.music_box .music_item .artist_img img {
+   border-radius: 100%;
 }
 
 .music_box .music_item .music_text {

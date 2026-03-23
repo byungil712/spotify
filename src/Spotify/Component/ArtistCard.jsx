@@ -12,11 +12,10 @@ const ArtistCard = ({ name }) => {
    if (!artist) return null;
    return (
       <div className="music_item">
-         <div className="music_img">
+         <div className="music_img artist_img">
             <img
                src={artist.images[0]?.url}
                alt={artist.name}
-               style={{ borderRadius: "100%" }}
             />
             <div className="music_repro">
                <FontAwesomeIcon icon={faCaretRight} />
