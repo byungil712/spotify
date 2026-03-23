@@ -6,6 +6,7 @@ import {
    faBoxArchive,
    faHouse,
    faCircleArrowDown,
+   faBars
 } from "@fortawesome/free-solid-svg-icons";
 
 const Header = ({ keyword, accessToken, setKeyword }) => {
@@ -13,7 +14,10 @@ const Header = ({ keyword, accessToken, setKeyword }) => {
       <header>
          <div className="header_i">
             <div className="logo">
-               <FontAwesomeIcon icon={faSpotify} />
+               <FontAwesomeIcon icon={faSpotify} className="d_logo"/>
+               <div className="m_logo">
+                  <img src="./img/spotify_m.png" alt="/" />
+               </div>
             </div>
             <div className="search_wrap">
                <div className="search_box">
@@ -58,6 +62,12 @@ const Header = ({ keyword, accessToken, setKeyword }) => {
                      </button>
                   </div>
                </div>
+            </div>
+            <div className="m_btn">
+               <button type="button">
+                  <span>앱 열기</span>
+               </button>
+               <FontAwesomeIcon icon={faBars} />
             </div>
          </div>
       </header>

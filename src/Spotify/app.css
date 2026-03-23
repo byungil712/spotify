@@ -60,6 +60,10 @@ header {
    z-index: 10;
 }
 
+.header_i .logo .m_logo{
+      display: none;
+   }
+
 .header_i .search_wrap {
    flex: 1;
    min-width: 0;
@@ -304,6 +308,10 @@ header {
 .header_i .service .login_box .login button:last-child p {
    font-size: 16px;
    font-weight: 700;
+}
+
+.header_i .m_btn {
+   display: none;
 }
 
 .center_wrap {
@@ -623,6 +631,7 @@ main .music_btn button {
 }
 
 .main_i .music_list .music_list_text {
+   width: 100%;
    max-width: 1428px;
    height: 40px;
    display: flex;
