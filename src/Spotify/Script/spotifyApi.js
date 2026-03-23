@@ -24,7 +24,7 @@ export const spotifyApi = createApi({
       getTopAlbums: builder.query({
          query: (id) => `/albums/${id}?market=KR`,
       }),
-      // 인기 라디오
+      // 신규 앨범
       getNewAlbum: builder.query({
          query: (id) => `/albums/${id}?market=KR`,
       }),
