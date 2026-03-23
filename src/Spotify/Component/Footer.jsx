@@ -5,6 +5,7 @@ import {
    faInstagram,
    faTwitter,
 } from "@fortawesome/free-brands-svg-icons";
+import { faGlobe } from "@fortawesome/free-solid-svg-icons";
 
 const Footer = () => {
    return (
@@ -91,12 +92,35 @@ const Footer = () => {
                </div>
             </div>
             <div className="footer_btm">
+               <div className="footer_m_info">
+                  <ul>
+                     <li>
+                        <a href="#">법률 정보</a>
+                     </li>
+                     <li>
+                        <a href="#">안전 및 개인정보 보호 센터</a>
+                     </li>
+                     <li>
+                        <a href="#">개인정보 처리방침</a>
+                     </li>
+                     <li>
+                        <a href="#">광고 상세정보</a>
+                     </li>
+                     <li>
+                        <a href="#">접근성</a>
+                     </li>
+                  </ul>
+               </div>
                <p>© 2026 Spotify AB</p>
+               <button type="button" className="m_btn">
+                  <FontAwesomeIcon icon={faGlobe} />
+                  <span>한국어</span>
+               </button>
                <p>
                   스포티파이 에이비, Regeringsgatan 19, 111 53 Stockholm, Sweden
                   | 대표: 다니엘 에크 | 사업자등록번호: 556703-7485 (스웨덴) |
-                  통신판매업 신고번호: 2024-공정-0007 (<span>사업자정보</span>) |
-                  고객지원문의 +82 1533 6552 및 support@spotify.com |
+                  통신판매업 신고번호: 2024-공정-0007 (<span>사업자정보</span>)
+                  | 고객지원문의 +82 1533 6552 및 support@spotify.com |
                   호스팅서비스제공자: Google LLC
                </p>
             </div>

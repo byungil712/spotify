@@ -108,15 +108,22 @@
 }
 
 @media screen and (max-width: 500px) {
-   .header_i {
-      padding-right: 32px;
+   header {
+      width: 100%;
+      min-width: 100%;
+      padding: 8px;
+      color: #b3b3b3;
    }
 
-   .header_i .logo .d_logo{
+   .header_i {
+      padding-right: 16px;
+   }
+
+   .header_i .logo .d_logo {
       display: none;
    }
 
-   .header_i .logo .m_logo{
+   .header_i .logo .m_logo {
       display: block;
       width: 100px;
    }
@@ -132,7 +139,7 @@
    .header_i .m_btn {
       display: flex;
       align-items: center;
-      gap: 32px;
+      gap: 24px;
    }
 
    .header_i .m_btn button {
@@ -145,7 +152,7 @@
    }
 
    .header_i .m_btn svg {
-      font-size: 24px;
+      font-size: 20px;
    }
 
    .menu {
@@ -166,11 +173,80 @@
       border-radius: 0;
    }
 
+   main .custom-scrollbar {
+      width: 2px;
+      position: absolute;
+      right: 0;
+      z-index: 100;
+      pointer-events: none;
+      opacity: 0;
+      transition:
+         opacity 0.4s ease,
+         border-radius 0.3s ease,
+         background-color 0.3s ease;
+      border-top-right-radius: 8px;
+      background-color: #b3b3b3;
+   }
+
    .footer_i .footer_btm {
       min-width: 0px;
+      padding-top: 24px;
+      align-items: flex-start;
+   }
+
+   .footer_i .footer_btm .footer_m_info ul {
+      display: flex;
+      flex-wrap: wrap;
+      row-gap: 8px;
+      column-gap: 16px;
+      font-size: 13px;
+      color: #7c7c7c;
+   }
+
+   .footer_i .footer_btm .m_btn {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 12px;
+      cursor: pointer;
+      border-radius: 16px;
+      border: 1px solid #7c7c7c;
+      background-color: transparent;
+      color: #fff;
    }
 
    .advart {
+      min-width: 100%;
+      height: 80px;
+      justify-content: center;
+   }
+
+   .advart_i {
       display: none;
+   }
+
+   .m_player {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 48px;
+   }
+
+   .m_player .m_icon {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+   }
+
+   .m_player .m_icon svg {
+      font-size: 24px;
+   }
+
+   .m_player .m_icon p {
+      font-size: 12px;
    }
 }
