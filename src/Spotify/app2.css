@@ -219,7 +219,7 @@
    }
 
    .main_i .music_list .music_list_text h3 {
-      font-size: 18px;
+      font-size: 20px;
    }
 
    .main_i .music_list .music_list_text p {
@@ -236,8 +236,8 @@
 
    .music_box .music_item {
       width: calc(1600px / 10);
+      justify-content: flex-start;
       padding: 8px 0;
-      padding-bottom: 24px;
    }
 
    .music_box .music_item .music_img .music_repro {
@@ -256,11 +256,13 @@
       width: 141px;
       display: flex;
       flex-direction: column;
+      flex-wrap: wrap;
       gap: 4px;
    }
 
    .music_box .music_item .music_text p {
-      font-size: 16px;
+      font-size: 17px;
+      white-space: wrap;
    }
 
    .music_box .music_item .music_text p:hover {
