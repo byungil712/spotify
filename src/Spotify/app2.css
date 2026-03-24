@@ -197,11 +197,12 @@
       background-color: #b3b3b3;
    }
 
-   .main_i{
+   .main_i {
       gap: 0;
    }
 
    .main_i .music_list {
+      width: 100%;
       padding: 8px 0;
    }
 
@@ -209,9 +210,14 @@
       padding-bottom: 12px;
    }
 
+   .main_i .music_list:hover .music_scroll .scroll_btn {
+      display: none;
+   }
+
    .main_i .music_list .music_list_text {
       height: 25px;
       padding-left: 16px;
+      margin-bottom: 8px;
    }
 
    .main_i .music_list:first-child .music_list_text {
@@ -231,6 +237,7 @@
    }
 
    .main_i .music_list .music_scroll .music_box {
+      max-width: 570px;
       padding-left: 4px;
    }
 
@@ -261,7 +268,7 @@
    }
 
    .music_box .music_item .music_text p {
-      font-size: 17px;
+      font-size: 16px;
       white-space: wrap;
    }
 

@@ -66,9 +66,9 @@ header {
    z-index: 10;
 }
 
-.header_i .logo .m_logo{
-      display: none;
-   }
+.header_i .logo .m_logo {
+   display: none;
+}
 
 .header_i .search_wrap {
    flex: 1;
@@ -902,11 +902,11 @@ footer {
    text-decoration: underline;
 }
 
-.footer_i .footer_btm .footer_m_info{
+.footer_i .footer_btm .footer_m_info {
    display: none;
 }
 
-.footer_i .footer_btm .m_btn{
+.footer_i .footer_btm .m_btn {
    display: none;
 }
 
@@ -959,6 +959,6 @@ footer {
    white-space: nowrap;
 }
 
-.m_player{
-   display: none;      
+.m_player {
+   display: none;
 }
