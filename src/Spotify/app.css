@@ -622,6 +622,7 @@ main .music_btn button {
    justify-content: center;
    align-items: flex-start;
    flex-direction: column;
+   position: relative;
    gap: 16px;
 }
 
@@ -629,7 +630,6 @@ main .music_btn button {
    display: grid;
    grid-template-columns: repeat(1, 1fr);
    padding: 16px 0;
-   position: relative;
 }
 
 .main_i .music_list:last-child {
@@ -677,7 +677,7 @@ main .music_btn button {
    top: 50%;
    transform: translateY(-20%);
    font-size: 14px;
-   font-weight: bold;
+   font-weight: 700;
    cursor: pointer;
    z-index: 10;
    display: none;
@@ -688,9 +688,21 @@ main .music_btn button {
       transform 0.2s ease,
       background 0.2s;
    border: none;
-   border-radius: 50%;
+   border-radius: 100%;
    background: #292929;
    color: #fff;
+}
+
+.main_i .music_list:nth-child(2) .music_scroll .scroll_btn{
+   top: 560px;
+}
+
+.main_i .music_list:nth-child(3) .music_scroll .scroll_btn{
+   top: 890px;
+}
+
+.main_i .music_list:nth-child(4) .music_scroll .scroll_btn{
+   top: 1255px;
 }
 
 .main_i .music_list .music_scroll .scroll_btn_left {
@@ -700,7 +712,7 @@ main .music_btn button {
 
 .main_i .music_list .music_scroll .scroll_btn_right {
    top: 210px;
-   left: 1416px;
+   right: 18px;
 }
 
 .main_i .music_list .music_scroll .music_box {
@@ -837,6 +849,7 @@ footer {
 
 .footer_i .footer_top .footer_menu .menu_category p {
    font-weight: 700;
+   cursor: text;
 }
 
 .footer_i .footer_top .footer_menu .menu_category ul {
